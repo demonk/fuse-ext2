@@ -193,6 +193,9 @@ Options:  ro, rw+, force, allow_other
           Please see details in the manual.
 
 Example:  fuse-ext2 /dev/sda1 /mnt/sda1
+Example:  fuse-ext2 /dev/sda1 /mnt/sda1 -o rw+
+
+> tips: you can ls devices with `ls /dev|disk`, select the device you just insert and use and above cmd to mount it.
 ```
 
 # Bugs
@@ -208,6 +211,8 @@ Before submitting a bug report, please look at the [existing issues](https://git
 $ /usr/local/bin/fuse-ext2 -v /dev/path /mnt/point -o debug
 ```
 
+* Aucually, writing data to ext4-formatted device is tooooooooooo slow
+
 # Important: Partition Labels
 
 Please **do not** use comma `,` in partition labels.
@@ -219,3 +224,15 @@ Please **do not** use comma `,` in partition labels.
 # Contact
 
 Alper Akcan <alper.akcan@gmail.com>
+
+---
+# Q&A
+## compile error
+
+> unknown type name 'uint64_t'
+
+fix:
+
+> just rename /usr/local/include as /usr/local/include_old (name is not matter actually), and reinstall FUSE again for fuse's headers file releasing to /usr/local/include. After finish, rebuild it.
+
+
